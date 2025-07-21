@@ -1,61 +1,35 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cadastro de Produtos & Clientes</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>📋 Sistema de Cadastro</h1>
-    <nav>
-      <button onclick="mostrarAba('produtos')">Produtos</button>
-      <button onclick="mostrarAba('clientes')">Clientes</button>
-    </nav>
-  </header>
+    <div class="container">
+        <h1>CADASTRO DE PRODUTOS</h1>
+            <input type="text" id="codigo" placeholder="Código" required>
+            <input type="text" id="produto" placeholder="Nome do Produto" required>
+            <input type="text" id="categoria" placeholder="Categoria" required>
+            <input type="text" id="quantidade" placeholder="Quantidade" required>
+            <input type="text" id="valor" placeholder="Valor do Produto" required>
+            <input id="cadastrarProduto" type="submit" value="Cadastrar Produto" >
+    </div>
+    <div class="container">
+        <h1>BUSCA E ATUALIZAÇÃO NOS PRODUTOS</h1>
+            <input type="text" id="idProduto" placeholder="Enter ID" required>
+            <input id="buscarProduto" type="submit" value="Buscar Produto" style="background-color: #0598dc;">
 
-  <main>
-    <!-- PRODUTOS -->
-    <section id="produtos" class="aba">
-      <h2>Gerenciar Produtos</h2>
-      <form id="form-produto">
-        <input type="hidden" id="produto-id">
-        <label>Nome do Produto:</label>
-        <input type="text" id="produto-nome" required>
-        <label>Preço:</label>
-        <input type="number" step="0.01" id="produto-preco" required>
-        <button type="submit">Salvar Produto</button>
-      </form>
-      <h3>Lista de Produtos</h3>
-      <table>
-        <thead>
-          <tr><th>ID</th><th>Nome</th><th>Preço</th><th>Ações</th></tr>
-        </thead>
-        <tbody id="lista-produtos"></tbody>
-      </table>
-    </section>
+            <input type="text" id="dadoProduto" placeholder="Produto">
+            <input type="text" id="dadoCategoria" placeholder="Categoria">
+            <input type="text" id="dadoQuantidade" placeholder="Quantidade">
+            <input type="text" id="dadoValor" placeholder="Valor do Produto">
+            <input id="atualizarProduto" type="submit" value="Atualizar Produto" style="background-color: #dcb105;">
+            
+            <input id="deletarProduto" type="submit" value="Deletar Produto" style="background-color: #dc0905;">
+    </div>
 
-    <!-- CLIENTES -->
-    <section id="clientes" class="aba hidden">
-      <h2>Gerenciar Clientes</h2>
-      <form id="form-cliente">
-        <input type="hidden" id="cliente-id">
-        <label>Nome do Cliente:</label>
-        <input type="text" id="cliente-nome" required>
-        <label>Email:</label>
-        <input type="email" id="cliente-email" required>
-        <button type="submit">Salvar Cliente</button>
-      </form>
-      <h3>Lista de Clientes</h3>
-      <table>
-        <thead>
-          <tr><th>ID</th><th>Nome</th><th>Email</th><th>Ações</th></tr>
-        </thead>
-        <tbody id="lista-clientes"></tbody>
-      </table>
-    </section>
-  </main>
-
-  <script src=""cadastro.j></script>
+    <script type="module" src="/script.js"></script>
 </body>
 </html>
