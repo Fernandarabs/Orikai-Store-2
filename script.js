@@ -31,3 +31,9 @@ logoutBtn.onclick = () => {
     loginBtn.style.display = "inline";
   });
 };
+
+document.getElementById("cadastrobtn").addEventListener("click", function() {
+  // Aqui vai o destino da navegação
+  window.location.href = "CADATRO.html"; 
+});
+
