@@ -32,7 +32,16 @@ logoutBtn.onclick = () => {
   });
 };
 
- import { initializeApp } from "https://orikai-produto-e-clientes-default-rtdb.firebaseio.com/:null";
+ import { initializeApp } from "https://orikai-produto-e-clientes-default-rtdb.firebaseio.com/
+109089
+:
+100
+1235678
+:
+48
+910111213
+:
+500";
 
  //VOCÊ DEVE SUBSTITUIR OS CÓDIGOS ABAIXOS CÓDIGOS DO SEU PROJETO NO FIREBASE (FIREBASE CONFIGURATION)
 // Import the functions you need from the SDKs you need
