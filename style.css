@@ -178,19 +178,115 @@ body {
   font-weight: 600;
 }
 
-#cadastrobtn{
-  background: #000;        /* Fundo preto */
-  color: #fff;             /* Texto branco */
-  border: 2px solid #000;  /* Borda preta */
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s ease;
+/* === CONTAINER === */
+.cadastro {
+    width: 420px;
+    background: #fff; /* branco */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.4s ease-in-out;
+    border: 1px solid #ddd;
 }
 
-#cadastrobtn:hover {
-  background: #fff;        /* Fundo branco ao passar o mouse */
-  color: #000;             /* Texto preto */
+h1 {
+    text-align: center;
+    color: #111; /* preto quase total */
+    margin-bottom: 25px;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* === CAMPOS DE TEXTO === */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #bbb; /* cinza médio */
+    border-radius: 6px;
+    font-size: 15px;
+    background: #fafafa; /* branco sujo */
+    color: #222; /* preto escuro */
+    transition: 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #000; /* preto */
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+}
+
+/* === BOTÕES === */
+input[type="submit"] {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background: #000; /* preto */
+    border: none;
+    color: #fff; /* branco */
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background: #333; /* cinza escuro para hover */
+    transform: translateY(-2px);
+}
+
+/* === VARIAÇÕES DE BOTÕES === */
+#buscarProduto {
+    background: #222; /* preto suave */
+    border: 2px solid #222;
+    color: #fff;
+}
+#buscarProduto:hover {
+    background: #444; /* cinza escuro */
+    border-color: #444;
+    color: #fff;
+}
+
+#atualizarProduto {
+    background: #555; /* cinza médio escuro */
+    border: 2px solid #555;
+    color: #fff;
+}
+#atualizarProduto:hover {
+    background: #777; /* cinza claro */
+    border-color: #777;
+    color: #fff;
+}
+
+#deletarProduto {
+    background: #000; /* preto */
+    border: 2px solid #444;
+    color: #fff;
+}
+#deletarProduto:hover {
+    background: #111; /* preto quase total */
+    border-color: #666;
+    color: #fff;
+}
+
+/* === ANIMAÇÃO SUAVE AO CARREGAR === */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    .container {
+        width: 95%;
+    }
 }
