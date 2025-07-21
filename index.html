@@ -156,10 +156,8 @@
 </html>
 
 
-<!-- ADICIONE ESTA LINHA AO MENU -->
 <li><a href="#cadastro">Cadastro</a></li>
 
-<!-- NOVA SEÇÃO: CADASTRO -->
 <section id="cadastro" style="padding: 40px; background: #fff;">
   <h2 style="text-align: center; color: #333;">Cadastro</h2>
   
@@ -190,10 +188,45 @@
   </div>
 </section>
 
+<div id="cadastroModal" class="modal">
+  <div class="modal-content">
+    <h2>Cadastro</h2>
+    <input type="text" id="nomeCadastro" placeholder="Nome" />
+    <input type="email" id="emailCadastro" placeholder="E-mail" />
+    <input type="password" id="senhaCadastro" placeholder="Senha" />
+    <button id="submitCadastro">Cadastrar</button>
+  </div>
+</div>
+
 <script>
 function mostrarFormulario(tipo) {
   document.getElementById("formProduto").style.display = tipo === 'produto' ? 'block' : 'none';
   document.getElementById("formCliente").style.display = tipo === 'cliente' ? 'block' : 'none';
+}
+
+
+const cadastroBtn = document.getElementById("cadastroBtn");
+const cadastroModal = document.getElementById("cadastroModal");
+const submitCadastro = document.getElementById("submitCadastro");
+
+if (cadastroBtn) {
+  cadastroBtn.onclick = () => cadastroModal.style.display = "flex";
+}
+
+if (submitCadastro) {
+  submitCadastro.onclick = () => {
+    const email = document.getElementById("emailCadastro").value;
+    const senha = document.getElementById("senhaCadastro").value;
+
+    firebase.auth().createUserWithEmailAndPassword(email, senha)
+      .then((userCredential) => {
+        alert("Cadastro realizado com sucesso!");
+        cadastroModal.style.display = "none";
+      })
+      .catch((error) => {
+        alert("Erro no cadastro: " + error.message);
+      });
+  };
 }
 </script>
 
@@ -223,3 +256,10 @@ function mostrarFormulario(tipo) {
 }
 </style>
 
+
+<div class="auth">
+  <button id="cadastroBtn">Cadastro</button>
+  <button id="loginBtn">Login</button>
+  <span id="userEmail" style="display: none;"></span>
+  <button id="logoutBtn" style="display: none;">Logout</button>
+</div>
