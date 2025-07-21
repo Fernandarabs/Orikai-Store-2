@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,91 +7,8 @@
   <title>Orikai Store</title>
   <link rel="stylesheet" href="style.css" />
 
-  <style>
-    /* ===== ESTILOS DO CADASTRO DE PRODUTOS ===== */
-    .cadastro-container {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 60px 10%;
-      background: #f5f5f5;
-    }
-
-    .cadastro-box {
-      width: 420px;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      border: 1px solid #ddd;
-    }
-
-    .cadastro-box h1 {
-      text-align: center;
-      color: #111;
-      margin-bottom: 25px;
-      font-size: 1.4rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .cadastro-box input[type="text"] {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 15px;
-      background: #fafafa;
-      color: #222;
-      transition: 0.3s ease;
-    }
-
-    .cadastro-box input[type="text"]:focus {
-      border-color: #000;
-      background: #fff;
-      outline: none;
-      box-shadow: 0 0 6px rgba(0,0,0,0.1);
-    }
-
-    .cadastro-box input[type="submit"] {
-      display: inline-block;
-      width: 100%;
-      padding: 12px;
-      background: #000;
-      border: none;
-      color: #fff;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-bottom: 12px;
-      transition: 0.3s ease;
-    }
-
-    .cadastro-box input[type="submit"]:hover {
-      background: #333;
-      transform: translateY(-2px);
-    }
-
-    #buscarProduto { background: #222; }
-    #buscarProduto:hover { background: #444; }
-    #atualizarProduto { background: #555; }
-    #atualizarProduto:hover { background: #777; }
-    #deletarProduto { background: #000; border: 1px solid #444; }
-    #deletarProduto:hover { background: #111; }
-
-    @media (max-width: 900px) {
-      .cadastro-container {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
 </head>
-
 <body>
-  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">Orikai Store</div>
     <ul class="menu">
@@ -98,172 +16,151 @@
       <li><a href="#calças">Calças</a></li>
       <li><a href="#Botas">Botas</a></li>
       <li><a href="#cadastro">Cadastro</a></li>
+      
     </ul>
-
-    <!-- Barra de busca -->
-    <form id="search-form" class="search-bar">
-      <input type="text" id="search-input" placeholder="Buscar produtos..." />
-      <button type="submit">🔍</button>
-    </form>
+  <form id="search-form" class="search-bar">
+  <input type="text" id="search-input" placeholder="Buscar produtos..." />
+  <button type="submit">🔍</button>
+  </form>
     <script>
-      document.getElementById("search-form").addEventListener("submit", function (e) {
-        e.preventDefault();
-        const termo = document.getElementById("search-input").value.toLowerCase();
-        const produtos = document.querySelectorAll(".produto");
-        produtos.forEach((produto) => {
-          const nome = produto.querySelector("p").textContent.toLowerCase();
-          produto.style.display = nome.includes(termo) ? "block" : "none";
-        });
-      });
-    </script>
+  document.getElementById("search-form").addEventListener("submit", function (e) {
+    e.preventDefault(); // evita recarregar a página
+
+    const termo = document.getElementById("search-input").value.toLowerCase();
+    const produtos = document.querySelectorAll(".produto");
+
+    produtos.forEach((produto) => {
+      const nome = produto.querySelector("p").textContent.toLowerCase();
+      if (nome.includes(termo)) {
+        produto.style.display = "block";
+      } else {
+        produto.style.display = "none";
+      }
+    });
+  });
+</script>
+
+    <div class="auth">
+      <button id="loginBtn">Login</button>
+      <span id="userEmail" style="display: none;"></span>
+      <button id="logoutBtn" style="display: none;">Logout</button>
+    </div>
   </nav>
 
-  <!-- SEÇÃO DE PRODUTOS EXISTENTES -->
-  <section id="produtos">
-    <h2>PRODUTOS</h2>
-    <!-- aqui ficam as categorias de camisas, calças e botas (já existentes no seu código) -->
-    <!-- ... -->
-  </section>
-
-  <!-- NOVA SEÇÃO DE CADASTRO COM FIREBASE -->
-  <section id="cadastro" class="cadastro-container">
-    <!-- CADASTRO -->
-    <div class="cadastro-box">
-      <h1>Cadastro de Produtos</h1>
-      <input type="text" id="codigo" placeholder="Código" required>
-      <input type="text" id="produto" placeholder="Nome do Produto" required>
-      <input type="text" id="categoria" placeholder="Categoria" required>
-      <input type="text" id="quantidade" placeholder="Quantidade" required>
-      <input type="text" id="valor" placeholder="Valor do Produto" required>
-      <input id="cadastrarProduto" type="submit" value="Cadastrar Produto">
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2>Login</h2>
+      <input type="email" id="email" placeholder="E-mail" />
+      <input type="password" id="password" placeholder="Senha" />
+      <button id="submitLogin">Entrar</button>
     </div>
+  </div>
 
-    <!-- BUSCA/ATUALIZAÇÃO -->
-    <div class="cadastro-box">
-      <h1>Buscar / Atualizar Produto</h1>
-      <input type="text" id="idProduto" placeholder="Código para buscar" required>
-      <input id="buscarProduto" type="submit" value="Buscar Produto">
-      <input type="text" id="dadoProduto" placeholder="Produto">
-      <input type="text" id="dadoCategoria" placeholder="Categoria">
-      <input type="text" id="dadoQuantidade" placeholder="Quantidade">
-      <input type="text" id="dadoValor" placeholder="Valor do Produto">
-      <input id="atualizarProduto" type="submit" value="Atualizar Produto">
-      <input id="deletarProduto" type="submit" value="Deletar Produto">
+      <button id="loginBtn">Cadastrar</button>
+
+ <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+<script src="firebase.js"></script>
+<script src="script.js"></script>
+<section id="produtos">
+  <h2>PRODUTOS</h2>
+
+  <div class="categoria">
+    <h3>Camisas</h3>
+    <div class="produtos-grid" id="camisas">
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/Wanderer.jpeg" alt="Camisa 1"></div>
+        <p>Wanderer Grunge Aesthetic Look</p><span>R$ 99,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/4b4159db-8611-4081-a474-4022c8e99821.jpeg" alt="Camisa 2"></div>
+        <p>Minimal Streetwear Shirt</p><span>R$ 109,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/Black Skull top.jpeg" alt="Camisa 3"></div>
+        <p>Goth Mesh Skull Shirt</p><span>R$ 119,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/Plus Size Women Music Festival Graphic Print….jpeg" alt="Camisa 4"></div>
+        <p>Boho Streetwear</p><span>R$ 89,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/PRICES MAY VARY_ 🌟Features - The lightweight….jpeg" alt="Camisa 5"></div>
+        <p>Black Aesthetic Typography Shirt</p><span>R$ 99,00</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/Punks Not Dead🥀⛓️ custom shirt! visual kei….jpeg" alt="Camisa 6"></div>
+        <p>Chains and Patchwork Punk T-Shirt</p><span>R$ 105,00</span>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Firebase CDN + Script -->
-  <script type="module">
-    // IMPORT DO FIREBASE 10+
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+  <div class="categoria">
+    <h3>Calças</h3>
+    <div class="produtos-grid" id="calças">
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/calça 1.jpeg" alt="Calça 1"></div>
+        <p>Cargo Pants with Zippers</p><span>R$ 199,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/calça 2.jpeg" alt="Calça 2"></div>
+        <p>Ripped Skinny Jeans</p><span>R$ 189,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/calça 3.jpeg" alt="Calça 3"></div>
+        <p>Jogger Pants Streetwear</p><span>R$ 179,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/calça4.jpeg" alt="Calça 4"></div>
+        <p>Strap Corset Punk Pants</p><span>R$ 210,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/calça 5.jpeg" alt="Calça 5"></div>
+        <p>Oversized Cargo Pants</p><span>R$ 205,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/calça 6.jpeg" alt="Calça 6"></div>
+        <p>Punk Pants</p><span>R$ 195,90</span>
+      </div>
+    </div>
+  </div>
 
-    // SUA CONFIG DO FIREBASE
-    const firebaseConfig = {
-      apiKey: "AIzaSyBzFTTUqOlJy7YrC2en-jsHMZIhQ1EuecE",
-      authDomain: "orikai-produto-e-clientes.firebaseapp.com",
-      databaseURL: "https://orikai-produto-e-clientes-default-rtdb.firebaseio.com",
-      projectId: "orikai-produto-e-clientes",
-      storageBucket: "orikai-produto-e-clientes.firebasestorage.app",
-      messagingSenderId: "731596279385",
-      appId: "1:731596279385:web:3d605c71286a5b6eb6ab48",
-      measurementId: "G-91S4TJP737"
-    };
+  <div class="categoria">
+    <h3>Botas</h3>
+    <div class="produtos-grid" id="Botas">
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/bota 1.jpeg" alt="Bota 1"></div>
+        <p>Demonia Boots with Cross</p><span>R$ 79,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/bota 2.jpeg" alt="Bota 2"></div>
+        <p>Cyber Goth Boots</p><span>R$ 59,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/bota 3.jpeg" alt="Bota 3"></div>
+        <p>Punk Buckle Boots</p><span>R$ 49,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/bota 4.jpeg" alt="Bota 4"></div>
+        <p>Goth Cross Buckle Boots</p><span>R$ 69,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/bota 5.jpeg" alt="Bota 5"></div>
+        <p>Bucket Lunar</p><span>R$ 55,90</span>
+      </div>
+      <div class="produto">
+        <div class="img-container"><img src="./imagens/bota 6.jpeg" alt="Bota 6"></div>
+        <p>White Punk Buckle Boots</p><span>R$ 159,90</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
 
-    // PEGAR ELEMENTOS
-    const codigo = document.getElementById('codigo');
-    const produto = document.getElementById('produto');
-    const categoria = document.getElementById('categoria');
-    const quantidade = document.getElementById('quantidade');
-    const valor = document.getElementById('valor');
-
-    const idProduto = document.getElementById('idProduto');
-    const dadoProduto = document.getElementById('dadoProduto');
-    const dadoCategoria = document.getElementById('dadoCategoria');
-    const dadoQuantidade = document.getElementById('dadoQuantidade');
-    const dadoValor = document.getElementById('dadoValor');
-
-    const cadastrarProduto = document.getElementById('cadastrarProduto');
-    const buscarProduto = document.getElementById('buscarProduto');
-    const atualizarProduto = document.getElementById('atualizarProduto');
-    const deletarProduto = document.getElementById('deletarProduto');
-
-    // FUNÇÃO CADASTRAR
-    function AddProduto(){
-      set(ref(db,'Produto/'+codigo.value),{
-        codigo: codigo.value,
-        produto: produto.value,
-        categoria: categoria.value,
-        quantidade: quantidade.value,
-        valor: valor.value
-      }).then(()=>{
-        codigo.value = ''
-        produto.value=''
-        categoria.value=''
-        quantidade.value=''
-        valor.value=''
-        alert("✅ Produto Cadastrado!");
-      }).catch((error)=>{
-        console.log(error);
-        alert('❌ Produto Não Cadastrado!');
-      })
-    }
-
-    // FUNÇÃO PESQUISAR
-    function PesquisarProduto(){
-      const dbRef = ref(db);
-      get(child(dbRef,'Produto/'+idProduto.value)).then((snapshot)=>{
-        if(snapshot.exists()){
-          dadoProduto.value = snapshot.val().produto;
-          dadoCategoria.value = snapshot.val().categoria;
-          dadoQuantidade.value = snapshot.val().quantidade;
-          dadoValor.value = snapshot.val().valor;
-          alert('✅ Produto Localizado!')
-        }else{
-          alert("❌ O produto não existe");
-        }
-      }).catch((e)=>{
-        alert('❌ Algo deu errado!')
-        console.log(e)
-      })
-    }
-
-    // FUNÇÃO ATUALIZAR
-    function AtualizarProdutos(){
-      update(ref(db,'Produto/'+idProduto.value),{
-        produto:dadoProduto.value,
-        categoria:dadoCategoria.value,
-        quantidade:dadoQuantidade.value,
-        valor:dadoValor.value
-      }).then(()=>{
-        alert('✅ Produto Atualizado!');
-      }).catch((e)=>{
-        alert('❌ Algo deu errado!')
-        console.log(e)
-      })
-    }
-
-    // FUNÇÃO DELETAR
-    function DeletarProdutos(){
-      remove(ref(db,'Produto/'+idProduto.value))
-      .then(()=>{
-        idProduto.value=''
-        dadoProduto.value=''
-        dadoCategoria.value=''
-        dadoQuantidade.value=''
-        dadoValor.value=''
-        alert('🗑️ Produto Deletado!')
-      })
-    }
-
-    // EVENTOS DOS BOTÕES
-    cadastrarProduto.addEventListener('click',AddProduto);
-    buscarProduto.addEventListener('click',PesquisarProduto);
-    atualizarProduto.addEventListener('click',AtualizarProdutos);
-    deletarProduto.addEventListener('click',DeletarProdutos);
-  </script>
 </body>
 </html>
+
+
+
+
+
