@@ -177,3 +177,20 @@ body {
   color: #27ae60;
   font-weight: 600;
 }
+
+#cadastrobtn{
+  background: #000;        /* Fundo preto */
+  color: #fff;             /* Texto branco */
+  border: 2px solid #000;  /* Borda preta */
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#cadastrobtn:hover {
+  background: #fff;        /* Fundo branco ao passar o mouse */
+  color: #000;             /* Texto preto */
+}
