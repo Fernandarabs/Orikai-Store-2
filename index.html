@@ -56,7 +56,7 @@
     </div>
   </div>
 
-      <button id="cadastrabtn">Cadastrar</button>
+     
 
  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
@@ -155,6 +155,27 @@
     </div>
   </div>
 </section>
+ <div class="cadastrar">
+    <h1>CADASTRO DE PRODUTOS</h1>
+    <input type="text" id="codigo" placeholder="Código" required>
+    <input type="text" id="produto" placeholder="Nome do Produto" required>
+    <input type="text" id="categoria" placeholder="Categoria" required>
+    <input type="text" id="quantidade" placeholder="Quantidade" required>
+    <input type="text" id="valor" placeholder="Valor do Produto" required>
+    <input id="cadastrarProduto" type="submit" value="Cadastrar Produto" style="background-color: #000; color: #fff; border: 2px solid #000;">
+</div>
+<div class="container">
+    <h1>BUSCA E ATUALIZAÇÃO NOS PRODUTOS</h1>
+    <input type="text" id="idProduto" placeholder="Enter ID" required>
+    <input id="buscarProduto" type="submit" value="Buscar Produto" style="background-color: #000; color: #fff; border: 2px solid #000;">
+    <input type="text" id="dadoProduto" placeholder="Produto">
+    <input type="text" id="dadoCategoria" placeholder="Categoria">
+    <input type="text" id="dadoQuantidade" placeholder="Quantidade">
+    <input type="text" id="dadoValor" placeholder="Valor do Produto">
+    <input id="atualizarProduto" type="submit" value="Atualizar Produto" style="background-color: #555; color: #fff; border: 2px solid #555;">
+    <input id="deletarProduto" type="submit" value="Deletar Produto" style="background-color: #000; color: #fff; border: 2px solid #000;">
+</div>
+
 
 
 </body>
